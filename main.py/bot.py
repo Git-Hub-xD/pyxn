@@ -11,7 +11,10 @@ Pyxen = Client(
   bot_token=BOT_TOKEN
 )
 
-
+@Pyxen.on_message(filters.command("start"))
+async def start_cmd(client, message):
+  await message.reply_text("Hi 👋")
+  
 print("Bot was started")
 
 Pyxen.run()
