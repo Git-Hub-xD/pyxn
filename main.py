@@ -13,7 +13,9 @@ Pyxen = Client(
 
 @Pyxen.on_message(filters.command("start"))
 async def start_cmd(client, message):
-  await message.reply_text("Hi 👋")
+  await message.reply_photo(
+    photo="",
+    caption="Hi 👋")
   
 print("Bot was started")
 
