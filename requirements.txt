@@ -1,2 +1,4 @@
-pyrogram
+pyrogram==2.0.27
+python-telegram-bot==20.1
+sqlite3
 tgcrypto
