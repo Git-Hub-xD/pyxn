@@ -1,4 +1,4 @@
-pyrogram==2.0.27
+pyrogram
 python-telegram-bot==20.1
-sqlite3
 tgcrypto
+apscheduler
