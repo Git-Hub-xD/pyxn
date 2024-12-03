@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from database import schema
+from database.schema import schema_sql
 
 # Path to the SQLite database
 DB_PATH = os.path.join(os.path.dirname(__file__), "user_data.db")
