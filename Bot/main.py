@@ -53,7 +53,7 @@ def profile_handler(client, message):
             f"Points: {points}\n"
             f"Level: {level}\n"
             f"EXP: {exp}\n"
-            f"Health: {health_points}"
+            f"Health: {health}"
         )
     else:
         message.reply_text("Error fetching your profile. Please try again later.")
