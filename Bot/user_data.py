@@ -14,7 +14,7 @@ def create_db():
                     points INTEGER,
                     level INTEGER,
                     exp INTEGER,
-                    health_points INTEGER,
+                    health INTEGER,
                     last_activity_time INTEGER)''')
     
     conn.commit()
