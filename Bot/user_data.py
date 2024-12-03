@@ -11,10 +11,10 @@ def create_db():
     c.execute('''CREATE TABLE IF NOT EXISTS users (
                     user_id INTEGER PRIMARY KEY,
                     username TEXT,
-                    points INTEGER,
-                    level INTEGER,
-                    exp INTEGER,
-                    health INTEGER,
+                    points INTEGER DEFAULT 10000,
+                    level INTEGER DEFAULT 1,
+                    exp INTEGER DEFAULT 0,
+                    health INTEGER DEFAULT 100,
                     last_activity_time INTEGER)''')
     
     conn.commit()
