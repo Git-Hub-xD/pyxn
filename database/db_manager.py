@@ -84,6 +84,18 @@ def update_health(user_id, health):
         )
         conn.commit()
 
+def add_username_column_if_missing():
+    """Ensure the 'username' column exists in the 'users' table."""
+    with connect_db() as conn:
+        cursor = conn.cursor()
+        try:
+            # Attempt to add the column
+            cursor.execute("ALTER TABLE users ADD COLUMN username TEXT;")
+            conn.commit()
+        except sqlite3.OperationalError:
+            # Column already exists, no action needed
+            pass
+
 def ensure_user_exists(user_id, username=None):
     """Ensure the user exists in the database. If not, add them."""
     with connect_db() as conn:
