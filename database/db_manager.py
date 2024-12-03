@@ -83,3 +83,21 @@ def update_health(user_id, health):
             (health, user_id),
         )
         conn.commit()
+
+def ensure_user_exists(user_id, username=None):
+    """Ensure the user exists in the database. If not, add them."""
+    with connect_db() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT 1 FROM users WHERE user_id = ?",
+            (user_id,),
+        )
+        if cursor.fetchone() is None:  # User doesn't exist
+            cursor.execute(
+                """
+                INSERT INTO users (user_id, username)
+                VALUES (?, ?)
+                """,
+                (user_id, username or "Unknown"),
+            )
+            conn.commit()
