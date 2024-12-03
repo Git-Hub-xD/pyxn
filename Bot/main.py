@@ -3,6 +3,10 @@ from Bot.user_data import create_db, add_user, get_user
 from Bot.flood_control import check_flood
 from Bot.leveling import level_up
 from database.db_manager import ensure_user_exists, get_user
+from database.db_manager import add_username_column_if_missing
+
+# Call this function when the bot starts
+add_username_column_if_missing()
 
 API_ID = "21989020"
 API_HASH = "3959305ae244126404702aa5068ba15c"
