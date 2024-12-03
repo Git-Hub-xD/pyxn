@@ -10,6 +10,7 @@ def create_db():
     
     c.execute('''CREATE TABLE IF NOT EXISTS users (
                     user_id INTEGER PRIMARY KEY,
+                    username TEXT,
                     points INTEGER,
                     level INTEGER,
                     exp INTEGER,
