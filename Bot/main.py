@@ -38,18 +38,17 @@ photo="https://imgur.com/a/hJU9sB4",
 @app.on_message(filters.command("profile"))
 def profile_handler(client, message):
     user_id = message.from_user.id
-    username = message.from_user.username  
-    name = message.from_user.first_name
+    username = message.from_user.username or message.from_user.first_name
 
     # Ensure user exists in the database
-    ensure_user_exists(user_id, username, name)
+    ensure_user_exists(user_id, username)
 
     # Fetch user data
     user_data = get_user(user_id)
     if user_data:
-        user_id, name, username, points, level, exp, health = user_data
+        user_id, username, points, level, exp, health = user_data
         message.reply_text(
-            f"**{name}'s Profile :**\n"
+            f"**Your Profile :**\n"
             f"Username: @{username}\n"
             f"Points: {points}\n"
             f"Level: {level}\n"
