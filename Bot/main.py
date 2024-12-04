@@ -88,12 +88,23 @@ def profile_handler(client, message):
         )
     else:
         message.reply_text("Error fetching your profile. Please try again later.")
+      
 @app.on_message(filters.text)
 def handle_message(client, message):
+    # List of allowed group chat IDs (replace with your actual group IDs)
+    ALLOWED_GROUPS = [-1001234567890, -1009876543210]  # Add your group IDs here
+
+    # Check if the message is from an allowed group
+    if message.chat.id not in ALLOWED_GROUPS:
+        return  # Don't process the message if it's not from an allowed group
+
     user_id = message.from_user.id
+
+    # Check if the user is flooding
     if check_flood(user_id):
         message.reply("You are sending messages too quickly. Please wait a few seconds.")
     else:
+        # Track and update user level and exp based on the message
         level_up(user_id, message.text)
 
 if __name__ == "__main__":
