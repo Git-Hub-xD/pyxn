@@ -12,7 +12,7 @@ def create_db():
                     user_id INTEGER PRIMARY KEY,
                     username TEXT,
                     points INTEGER DEFAULT 10000,
-                    level INTEGER DEFAULT 0,
+                    level INTEGER DEFAULT 1,
                     exp INTEGER DEFAULT 0,
                     health INTEGER DEFAULT 100,
                     last_activity_time INTEGER)''')
