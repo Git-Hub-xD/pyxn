@@ -21,7 +21,8 @@ create_db()
 @app.on_message(filters.command("start"))
 def start_handler(client, message):
     user_id = message.from_user.id
-    username = message.from_user.username or message.from_user.first_name
+    first_name = message.from_user.first_name  # Use first name for the link
+    username = message.from_user.username or first_name
 
     # Ensure user exists in the database
     ensure_user_exists(user_id, username)
@@ -31,8 +32,8 @@ def start_handler(client, message):
     if user_data:
         user_id, username, points, level, exp, health = user_data
 
-        # Create a user link that redirects to the user's Telegram profile
-        user_link = f'<a href="tg://user?id={user_id}">{username}</a>'
+        # Create a user link using the user's first name
+        user_link = f'<a href="tg://user?id={user_id}">{first_name}</a>'
 
         # Send a welcome message with user data and the user link
         message.reply_photo(
@@ -60,8 +61,8 @@ def profile_handler(client, message):
     # Ensure user exists in the database
     ensure_user_exists(user_id, username)
 
-    # Creating User Link
-    user_link = f'<a href="tg://user?id={user_id}">{username}</a>'
+    # Create a user link using the user's first name
+        user_link = f'<a href="tg://user?id={user_id}">{first_name}</a>'
   
     # Fetch user data
     user_data = get_user(user_id)
