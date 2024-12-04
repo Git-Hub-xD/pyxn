@@ -1,8 +1,13 @@
 import sqlite3
 import os
 
-# Path to the SQLite database
-DB_PATH = os.path.join(os.path.dirname(__file__), "database", "user_data.db")
+# Ensure the 'database' directory exists
+database_dir = os.path.join(os.path.dirname(__file__), 'database')
+if not os.path.exists(database_dir):
+    os.makedirs(database_dir)
+
+# Correct path to the SQLite database
+DB_PATH = os.path.join(database_dir, "user_data.db")
 
 def connect_db():
     """Connect to the SQLite database."""
