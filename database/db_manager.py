@@ -1,5 +1,6 @@
 import sqlite3
 import os
+from Bot.main import app
 
 # Path to the SQLite database
 DB_PATH = os.path.join(os.path.dirname(__file__), "user_data.db")
