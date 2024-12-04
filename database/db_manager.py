@@ -1,28 +1,8 @@
 import sqlite3
 import os
 
-API_ID = "21989020"
-API_HASH = "3959305ae244126404702aa5068ba15c"
-BOT_TOKEN = "7410194228:AAGyVEIgppL2tusKBIG_f-PI0XMwuD4uY1Y"
-
-app = Client(
-  name="pyxn",
-  api_id=API_ID,
-  api_hash=API_HASH,
-  bot_token=BOT_TOKEN
-
 # Path to the SQLite database
 DB_PATH = os.path.join(os.path.dirname(__file__), "user_data.db")
-
-# List of allowed group chat IDs
-ALLOWED_GROUPS = [-1002135192853, -1002324159284]  # Replace with your actual group IDs
-
-@app.on_message(filters.text)
-def track_messages(client, message):
-    if message.chat.id not in ALLOWED_GROUPS:
-        return  # Don't track if the message is not from an allowed group
-
-    # Your existing message tracking logic...
 
 def connect_db():
     """Connect to the SQLite database."""
