@@ -70,11 +70,14 @@ def profile_handler(client, message):
         target_user = message.reply_to_message.from_user
     elif message.entities and message.entities[0].type == "mention":
         # If the command is used by tagging a user (e.g., @username)
-        # Extract the username from the message entities
-        mentioned_username = message.entities[0].user.username
-
-        # Fetch user data based on the username
-        target_user = client.get_users(mentioned_username)  # This fetches the user by username
+        mentioned_username = message.entities[0].text.strip('@')
+        try:
+            # Fetch the user by their username
+            target_user = client.get_users(mentioned_username)
+        except Exception as e:
+            # If the username is invalid or user doesn't exist
+            message.reply(f"Error: {str(e)}")
+            return
     else:
         # If no reply or mention, show the profile of the user who sent the command
         target_user = message.from_user
@@ -100,7 +103,8 @@ def profile_handler(client, message):
             f"Health: {health}"
         )
     else:
-        message.reply_text(f"Error fetching {target_user.first_name}'s profile. Please try again later")
+        message.reply_text(f"Error fetching {target_user.first_name}'s profile. Please try again later.")
+
       
 @app.on_message(filters.text)
 def handle_message(client, message):
