@@ -4,6 +4,16 @@ import os
 # Path to the SQLite database
 DB_PATH = os.path.join(os.path.dirname(__file__), "user_data.db")
 
+# List of allowed group chat IDs
+ALLOWED_GROUPS = [-1002135192853, -1002324159284]  # Replace with your actual group IDs
+
+@app.on_message(filters.text)
+def track_messages(client, message):
+    if message.chat.id not in ALLOWED_GROUPS:
+        return  # Don't track if the message is not from an allowed group
+
+    # Your existing message tracking logic...
+
 def connect_db():
     """Connect to the SQLite database."""
     return sqlite3.connect(DB_PATH)
