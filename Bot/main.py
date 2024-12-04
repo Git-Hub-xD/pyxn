@@ -56,6 +56,7 @@ def start_handler(client, message):
 @app.on_message(filters.command("profile"))
 def profile_handler(client, message):
     user_id = message.from_user.id
+    first_name = message.from_user.first_name  # Use first name for the link
     username = message.from_user.username or message.from_user.first_name
 
     # Ensure user exists in the database
