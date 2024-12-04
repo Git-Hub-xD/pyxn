@@ -64,30 +64,40 @@ def start_handler(client, message):
 
 @app.on_message(filters.command("profile"))
 def profile_handler(client, message):
-    user_id = message.from_user.id
-    first_name = message.from_user.first_name  # Use first name for the link
-    username = message.from_user.username or message.from_user.first_name
+    # Check if the command is replied to a message or tagged with @username
+    if message.reply_to_message:
+        # If the command is used by replying to another user's message
+        target_user = message.reply_to_message.from_user
+    elif message.entities and message.entities[0].type == "mention":
+        # If the command is used by tagging a user (e.g., @username)
+        target_user = message.entities[0].user
+    else:
+        # If no reply or mention, show the profile of the user who sent the command
+        target_user = message.from_user
 
-    # Ensure user exists in the database
-    ensure_user_exists(user_id, username)
+    # Check if the target is a bot
+    if target_user.is_bot:
+        message.reply("You can't get the profile of a bot.")
+        return
 
-    # Create a user link using the user's first name
-    user_link = f'<a href="tg://user?id={user_id}">{first_name}</a>'
-  
-    # Fetch user data
-    user_data = get_user(user_id)
+    # Fetch user data from the database for the target user
+    user_data = get_user(target_user.id)
     if user_data:
         user_id, username, points, level, exp, health = user_data
+        # Create a user link using the user's first name
+        user_link = f'<a href="tg://user?id={target_user.id}">{target_user.first_name}</a>'
+        
+        # Send the profile details
         message.reply_text(
             f"**{user_link}'s Profile :**\n"
-            f"Points : {points}\n"
+            f"Points: {points}\n"
             f"Level: {level}\n"
-            f"EXP : {exp}\n"
-            f"Health : {health}"
+            f"EXP: {exp}\n"
+            f"Health: {health}"
         )
     else:
-        message.reply_text("Error fetching your profile. Please try again later.")
-
+        message.reply_text(f"Error fetching {target_user.first_name}'s profile. Please try again later.")
+      
 @app.on_message(filters.text)
 def handle_message(client, message):
   # List of allowed group chat IDs (replace with your actual group IDs)
