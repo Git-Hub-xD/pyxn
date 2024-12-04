@@ -1,6 +1,15 @@
 import sqlite3
 import os
-from Bot.main import app
+
+API_ID = "21989020"
+API_HASH = "3959305ae244126404702aa5068ba15c"
+BOT_TOKEN = "7410194228:AAGyVEIgppL2tusKBIG_f-PI0XMwuD4uY1Y"
+
+app = Client(
+  name="pyxn",
+  api_id=API_ID,
+  api_hash=API_HASH,
+  bot_token=BOT_TOKEN
 
 # Path to the SQLite database
 DB_PATH = os.path.join(os.path.dirname(__file__), "user_data.db")
