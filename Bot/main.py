@@ -96,15 +96,5 @@ def handle_message(client, message):
     else:
         level_up(user_id, message.text)
 
-# List of allowed group chat IDs
-ALLOWED_GROUPS = [-1001234567890, -1009876543210]  # Replace with your actual group IDs
-
-@app.on_message(filters.text)
-def track_messages(client, message):
-    if message.chat.id not in ALLOWED_GROUPS:
-        return  # Don't track if the message is not from an allowed group
-
-    # Your existing message tracking logic...
-
 if __name__ == "__main__":
     app.run()
