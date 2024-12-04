@@ -62,7 +62,7 @@ def profile_handler(client, message):
     ensure_user_exists(user_id, username)
 
     # Create a user link using the user's first name
-        user_link = f'<a href="tg://user?id={user_id}">{first_name}</a>'
+      user_link = f'<a href="tg://user?id={user_id}">{first_name}</a>'
   
     # Fetch user data
     user_data = get_user(user_id)
