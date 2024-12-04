@@ -66,7 +66,7 @@ def profile_handler(client, message):
     if user_data:
         user_id, username, points, level, exp, health = user_data
         message.reply_text(
-            f"**@{username}'s Profile :**\n"
+            f"**{user_link}'s Profile :**\n"
             f"Points: {points}\n"
             f"Level: {level}\n"
             f"EXP: {exp}\n"
