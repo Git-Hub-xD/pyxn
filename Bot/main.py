@@ -87,12 +87,12 @@ def profile_handler(client, message):
         )
     else:
         message.reply_text("Error fetching your profile. Please try again later.")
-      
-    # List of allowed group chat IDs (replace with your actual group IDs)
-    ALLOWED_GROUPS = [-1001234567890, -1009876543210]  # Add your group IDs here
 
 @app.on_message(filters.text)
 def handle_message(client, message):
+  # List of allowed group chat IDs (replace with your actual group IDs)
+    ALLOWED_GROUPS = [-1002135192853, -1002324159284]  # Add your group IDs here
+
     # Ensure the message is from an allowed group
     if message.chat.id not in ALLOWED_GROUPS:
         return  # Ignore messages outside allowed groups
