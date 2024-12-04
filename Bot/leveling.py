@@ -1,4 +1,4 @@
-from Bot.user_data import get_user, update_user_data
+from database.db_manager import get_user, update_user_data
 
 # Placeholder: A simple way to gain experience (leveling up)
 def level_up(user_id, message_text):
