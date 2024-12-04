@@ -44,7 +44,6 @@ def start_handler(client, message):
                 f"𝖦𝖾𝗍 𝗌𝗍𝖺𝗋𝗍𝖾𝖽 𝗇𝗈𝗐 ! 𝗍𝗒𝗉𝖾 /help 𝖿𝗈𝗋 𝗆𝗈𝗋𝖾 𝖼𝗈𝗆𝗆𝖺𝗇𝖽𝗌.\n\n"
                 f"You have {points} points, level {level}, and {health} health points."
             ),
-            parse_mode="HTML"  # Ensure proper parsing of HTML tags
         )
 
     # If user data doesn't exist, add the user and fetch data again
