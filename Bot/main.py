@@ -1,4 +1,5 @@
 from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from Bot.user_data import create_db, add_user, get_user
 from Bot.flood_control import check_flood
 from Bot.leveling import level_up
@@ -32,8 +33,16 @@ def start_handler(client, message):
     if user_data:
         user_id, username, points, level, exp, health = user_data
 
-        # Create a user link using the user's first name
+      # Create a user link using the user's first name
         user_link = f'<a href="tg://user?id={user_id}">{first_name}</a>'
+
+      # Inline keyboard with a button to your chat group
+        chat_group_url = "https://t.me/KaisenWorld"  # Replace with your group link
+        keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("Join Chat Group", url=chat_group_url)]
+            ]
+        )
 
         # Send a welcome message with user data and the user link
         message.reply_photo(
@@ -45,6 +54,7 @@ def start_handler(client, message):
                 f"𝖦𝖾𝗍 𝗌𝗍𝖺𝗋𝗍𝖾𝖽 𝗇𝗈𝗐 ! 𝗍𝗒𝗉𝖾 /help 𝖿𝗈𝗋 𝗆𝗈𝗋𝖾 𝖼𝗈𝗆𝗆𝖺𝗇𝖽𝗌.\n\n"
                 f"🎯 **ʏᴏᴜʀ sᴛᴀᴛs :**\n• ᴘᴏɪɴᴛs : {points}\n• ʟᴇᴠᴇʟ : {level}"
             ),
+          reply_markup=keyboard,  # Attach the keyboard to the message
         )
 
     # If user data doesn't exist, add the user and fetch data again
