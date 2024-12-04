@@ -96,7 +96,7 @@ def profile_handler(client, message):
             f"Health: {health}"
         )
     else:
-        message.reply_text(f"Error fetching {target_user.first_name}'s profile. Please try again later.")
+        message.reply_text(f"Error fetching {target_user.first_name}'s profile. Please try again later or try after using /start !")
       
 @app.on_message(filters.text)
 def handle_message(client, message):
