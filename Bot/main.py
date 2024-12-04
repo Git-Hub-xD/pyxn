@@ -71,10 +71,10 @@ def profile_handler(client, message):
         user_id, username, points, level, exp, health = user_data
         message.reply_text(
             f"**{user_link}'s Profile :**\n"
-            f"Points: {points}\n"
+            f"Points : {points}\n"
             f"Level: {level}\n"
-            f"EXP: {exp}\n"
-            f"Health: {health}"
+            f"EXP : {exp}\n"
+            f"Health : {health}"
         )
     else:
         message.reply_text("Error fetching your profile. Please try again later.")
