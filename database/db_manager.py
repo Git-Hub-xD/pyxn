@@ -26,9 +26,8 @@ def create_db():
                         level INTEGER DEFAULT 1,
                         exp INTEGER DEFAULT 0,
                         health INTEGER DEFAULT 100,
-                        last_activity_time INTEGER DEFAULT 0
-                    )''')
-        
+                        last_activity_time INTEGER DEFAULT 0,
+                        last_claimed INTEGER DEFAULT 0)''')  # Add last_claimed field
         conn.commit()
 
 def add_user(user_id, username=None):
