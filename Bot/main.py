@@ -123,7 +123,7 @@ def set_custom_message(group_id, message_type, custom_message):
         cursor = conn.cursor()
         column = "custom_welcome" if message_type == "welcome" else "custom_goodbye"
         cursor.execute(
-            f"INSERT INTO group_settings (group_id, {column}) VALUES (?, ?) "
+            f"INSERT INTO users (group_id, {column}) VALUES (?, ?) "
             f"ON CONFLICT(group_id) DO UPDATE SET {column} = ?",
             (group_id, custom_message, custom_message)
         )
@@ -135,7 +135,7 @@ def toggle_message_status(group_id, message_type, status):
         cursor = conn.cursor()
         column = "welcome_enabled" if message_type == "welcome" else "goodbye_enabled"
         cursor.execute(
-            f"INSERT INTO group_settings (group_id, {column}) VALUES (?, ?) "
+            f"INSERT INTO users (group_id, {column}) VALUES (?, ?) "
             f"ON CONFLICT(group_id) DO UPDATE SET {column} = ?",
             (group_id, status, status)
         )
@@ -147,7 +147,7 @@ def get_group_settings(group_id):
         cursor = conn.cursor()
         cursor.execute(
             "SELECT custom_welcome, custom_goodbye, welcome_enabled, goodbye_enabled "
-            "FROM group_settings WHERE group_id = ?",
+            "FROM users WHERE group_id = ?",
             (group_id,)
         )
         return cursor.fetchone()
