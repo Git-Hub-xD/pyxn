@@ -26,7 +26,11 @@ def create_db():
                         level INTEGER DEFAULT 1,
                         exp INTEGER DEFAULT 0,
                         health INTEGER DEFAULT 100,
-                        last_activity_time INTEGER DEFAULT 0,
+                        last_activity_time INTEGER DEFAULT 0
+                    )''')
+        
+        # Create the 'group_settings' table
+        c.execute('''CREATE TABLE IF NOT EXISTS group_settings (
                         group_id INTEGER PRIMARY KEY,
                         custom_welcome TEXT DEFAULT NULL,
                         custom_goodbye TEXT DEFAULT NULL,
