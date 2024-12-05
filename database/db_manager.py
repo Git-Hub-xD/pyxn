@@ -30,7 +30,7 @@ def create_db():
                         custom_welcome TEXT DEFAULT NULL,
                         custom_goodbye TEXT DEFAULT NULL,
                         welcome_enabled INTEGER DEFAULT 1,
-                        goodbye_enabled INTEGER DEFAULT 1))''')
+                        goodbye_enabled INTEGER DEFAULT 1);)''')
         conn.commit()
 
 def add_user(user_id, username=None):
