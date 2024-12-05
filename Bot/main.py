@@ -119,7 +119,6 @@ def handle_message(client, message):
 
 @app.on_message(filters.command("help"))
 def help_handler(client, message):
-    print("Help command triggered")  # Debug log
     help_text = "This is the help text..."
     message.reply_text(help_text)
 
