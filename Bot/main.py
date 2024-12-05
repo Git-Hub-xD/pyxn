@@ -99,7 +99,6 @@ def profile_handler(client, message):
     else:
         message.reply_text(f"Error fetching {target_user.first_name}'s profile. Please try again later or try after using /start !")
 
-      
 @app.on_message(filters.text)
 def handle_message(client, message):
   # List of allowed group chat IDs (replace with your actual group IDs)
@@ -120,18 +119,8 @@ def handle_message(client, message):
 
 @app.on_message(filters.command("help"))
 def help_handler(client, message):
-    # List of available commands and their descriptions
-    help_text = (
-        "Here are the commands you can use with the Pyxn Bot:\n\n"
-        "/start - Start the bot and set up your profile.\n"
-        "/profile - View your profile or the profile of another user (by replying to their message or tagging them).\n"
-        "/help - Show this help message.\n\n"
-        "💬 **Message Tracking**: Send messages in the group to earn experience and level up.\n"
-        "⚡ **Flood Control**: Don't spam! The bot will block you if you send too many messages too quickly.\n"
-        "🏆 **Leaderboard**: Soon to come! Compete with others based on your activity and points.\n"
-    )
-    
-    # Send the help message to the user
+    print("Help command triggered")  # Debug log
+    help_text = "This is the help text..."
     message.reply_text(help_text)
 
 @app.on_message(filters.command("daily"))
