@@ -40,6 +40,23 @@ def create_db():
         
         conn.commit()
 
+import sqlite3
+
+def inspect_db():
+    conn = sqlite3.connect("database/user_data.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    tables = cursor.fetchall()
+    print("Tables:", tables)
+
+    for table in tables:
+        cursor.execute(f"PRAGMA table_info({table[0]});")
+        print(f"Structure of {table[0]}:", cursor.fetchall())
+
+    conn.close()
+
+inspect_db()
+
 def add_user(user_id, username=None):
     """Add a new user to the database."""
     with connect_db() as conn:
