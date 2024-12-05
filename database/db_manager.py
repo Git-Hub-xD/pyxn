@@ -26,11 +26,7 @@ def create_db():
                         level INTEGER DEFAULT 1,
                         exp INTEGER DEFAULT 0,
                         health INTEGER DEFAULT 100,
-                        last_activity_time INTEGER DEFAULT 0
-                    )''')
-        
-        # Create the 'group_settings' table
-        c.execute('''CREATE TABLE IF NOT EXISTS group_settings (
+                        last_activity_time INTEGER DEFAULT 0,
                         group_id INTEGER PRIMARY KEY,
                         custom_welcome TEXT DEFAULT NULL,
                         custom_goodbye TEXT DEFAULT NULL,
@@ -39,23 +35,6 @@ def create_db():
                     )''')
         
         conn.commit()
-
-import sqlite3
-
-def inspect_db():
-    conn = sqlite3.connect("database/user_data.db")
-    cursor = conn.cursor()
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    tables = cursor.fetchall()
-    print("Tables:", tables)
-
-    for table in tables:
-        cursor.execute(f"PRAGMA table_info({table[0]});")
-        print(f"Structure of {table[0]}:", cursor.fetchall())
-
-    conn.close()
-
-inspect_db()
 
 def add_user(user_id, username=None):
     """Add a new user to the database."""
