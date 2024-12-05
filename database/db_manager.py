@@ -140,3 +140,38 @@ def ensure_user_exists(user_id, username=None):
                 (user_id, username or "Unknown"),
             )
             conn.commit()
+
+def set_custom_message(group_id, message_type, custom_message):
+    """Set a custom welcome or goodbye message for a group."""
+    with connect_db() as conn:
+        cursor = conn.cursor()
+        column = "custom_welcome" if message_type == "welcome" else "custom_goodbye"
+        cursor.execute(
+            f"INSERT INTO group_settings (group_id, {column}) VALUES (?, ?) "
+            f"ON CONFLICT(group_id) DO UPDATE SET {column} = ?",
+            (group_id, custom_message, custom_message)
+        )
+        conn.commit()
+
+def toggle_message_status(group_id, message_type, status):
+    """Toggle welcome or goodbye message on/off for a group."""
+    with connect_db() as conn:
+        cursor = conn.cursor()
+        column = "welcome_enabled" if message_type == "welcome" else "goodbye_enabled"
+        cursor.execute(
+            f"INSERT INTO group_settings (group_id, {column}) VALUES (?, ?) "
+            f"ON CONFLICT(group_id) DO UPDATE SET {column} = ?",
+            (group_id, status, status)
+        )
+        conn.commit()
+
+def get_group_settings(group_id):
+    """Fetch group settings for welcome and goodbye messages."""
+    with connect_db() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT custom_welcome, custom_goodbye, welcome_enabled, goodbye_enabled "
+            "FROM group_settings WHERE group_id = ?",
+            (group_id,)
+        )
+        return cursor.fetchone()
