@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from Bot.main import get_group_settings
+from database.db_manager import get_group_settings
 from database.db_manager import set_custom_message, toggle_message_status
 from config.settings import BOT_ADMINS
 
