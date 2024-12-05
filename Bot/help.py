@@ -1,3 +1,4 @@
+from Bot.main import app
 from pyrogram import Client, filters
 
 # Assuming your app instance is named `app`
