@@ -158,21 +158,25 @@ def daily_reward(client, message):
     update_user_data(user_id, new_points, level)
 
     # Update the last claim time to the current time
-    with connect_db() as conn:
-        cursor = conn.cursor()
-        cursor.execute(
-            """
-            UPDATE users
-            SET points = ?, last_claimed = ?
-            WHERE user_id = ?
-            """,
-            (new_points, current_time, user_id)
-        )
-        conn.commit()
+    try:
+        with connect_db() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                """
+                UPDATE users
+                SET points = ?, last_claimed = ?
+                WHERE user_id = ?
+                """,
+                (new_points, current_time, user_id)
+            )
+            conn.commit()
+    except Exception as e:
+        message.reply("Error: Could not update your data. Please try again later.")
+        print(f"Database error: {e}")
+        return
 
     # Inform the user that they've successfully claimed their reward
     message.reply(f"🎉 You've successfully claimed your daily reward of {DAILY_REWARD} points! Your new point balance is {new_points}.")
-
 
 if __name__ == "__main__":
     app.run()
