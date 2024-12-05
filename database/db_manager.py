@@ -17,8 +17,6 @@ def create_db():
     """Initialize the database by creating tables."""
     with connect_db() as conn:
         c = conn.cursor()
-        
-        # Create the 'users' table
         c.execute('''CREATE TABLE IF NOT EXISTS users (
                         user_id INTEGER PRIMARY KEY,
                         username TEXT,
@@ -27,7 +25,7 @@ def create_db():
                         exp INTEGER DEFAULT 0,
                         health INTEGER DEFAULT 100,
                         last_activity_time INTEGER DEFAULT 0,
-                        last_claimed INTEGER DEFAULT 0)''')  # Add last_claimed field
+                        last_claimed INTEGER DEFAULT 0)''')  # last_claimed field added
         conn.commit()
 
 def add_user(user_id, username=None):
