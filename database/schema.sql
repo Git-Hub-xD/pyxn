@@ -8,10 +8,3 @@ CREATE TABLE IF NOT EXISTS users (
     health INTEGER DEFAULT 100,        -- Health points
     joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Timestamp when the user joined
 );
-CREATE TABLE IF NOT EXISTS group_settings (
-    group_id INTEGER PRIMARY KEY,
-    custom_welcome TEXT DEFAULT NULL,
-    custom_goodbye TEXT DEFAULT NULL,
-    welcome_enabled INTEGER DEFAULT 1,
-    goodbye_enabled INTEGER DEFAULT 1
-);
