@@ -24,7 +24,13 @@ def create_db():
                         level INTEGER DEFAULT 1,
                         exp INTEGER DEFAULT 0,
                         health INTEGER DEFAULT 100,
-                        last_activity_time INTEGER DEFAULT 0)''')
+                        last_activity_time INTEGER DEFAULT 0
+                    CREATE TABLE IF NOT EXISTS group_settings (
+                        group_id INTEGER PRIMARY KEY,
+                        custom_welcome TEXT DEFAULT NULL,
+                        custom_goodbye TEXT DEFAULT NULL,
+                        welcome_enabled INTEGER DEFAULT 1,
+                        goodbye_enabled INTEGER DEFAULT 1))''')
         conn.commit()
 
 def add_user(user_id, username=None):
