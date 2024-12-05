@@ -130,8 +130,7 @@ def help_handler(client, message):
         "`/admin` - Admin-only commands (restricted access).\n"
         "\n*More commands will be added soon!*"
     )
-
-    await message.reply_text(help_text)
+message.reply_text(help_text)
 
 if __name__ == "__main__":
     app.run()
