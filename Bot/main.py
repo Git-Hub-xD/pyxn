@@ -117,7 +117,7 @@ def handle_message(client, message):
         level_up(user_id, message.text) 
 
 # Assuming your app instance is named `app`
-@app.on_message(filters.command("help"))
+@app.on_message(filters.command("cmd"))
 def help_handler(client, message):
   message.reply_photo(
      photo="https://imgur.com/a/hJU9sB4",
