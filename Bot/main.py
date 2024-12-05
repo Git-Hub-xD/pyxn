@@ -119,7 +119,9 @@ def handle_message(client, message):
 # Assuming your app instance is named `app`
 @app.on_message(filters.command("help"))
 def help_handler(client, message):
-    help_text = (
+  message.reply_photo(
+     photo="https://imgur.com/a/hJU9sB4",
+     caption=(
         "**Bot Help Menu**\n\n"
         "`/start` - Start the bot and get a welcome message.\n"
         "`/help` - Show this help message.\n"
@@ -130,7 +132,6 @@ def help_handler(client, message):
         "`/admin` - Admin-only commands (restricted access).\n"
         "\n*More commands will be added soon!*"
     )
-message.reply_text(help_text)
 
 if __name__ == "__main__":
     app.run()
