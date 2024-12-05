@@ -17,6 +17,8 @@ def create_db():
     """Initialize the database by creating tables."""
     with connect_db() as conn:
         c = conn.cursor()
+        
+        # Create the 'users' table
         c.execute('''CREATE TABLE IF NOT EXISTS users (
                         user_id INTEGER PRIMARY KEY,
                         username TEXT,
@@ -25,12 +27,17 @@ def create_db():
                         exp INTEGER DEFAULT 0,
                         health INTEGER DEFAULT 100,
                         last_activity_time INTEGER DEFAULT 0
-                    CREATE TABLE IF NOT EXISTS group_settings (
+                    )''')
+        
+        # Create the 'group_settings' table
+        c.execute('''CREATE TABLE IF NOT EXISTS group_settings (
                         group_id INTEGER PRIMARY KEY,
                         custom_welcome TEXT DEFAULT NULL,
                         custom_goodbye TEXT DEFAULT NULL,
                         welcome_enabled INTEGER DEFAULT 1,
-                        goodbye_enabled INTEGER DEFAULT 1);)''')
+                        goodbye_enabled INTEGER DEFAULT 1
+                    )''')
+        
         conn.commit()
 
 def add_user(user_id, username=None):
