@@ -118,7 +118,7 @@ def handle_message(client, message):
 
 # Assuming your app instance is named `app`
 @app.on_message(filters.command("help"))
-async def help_handler(client, message):
+def help_handler(client, message):
     help_text = (
         "**Bot Help Menu**\n\n"
         "`/start` - Start the bot and get a welcome message.\n"
