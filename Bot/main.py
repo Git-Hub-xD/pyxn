@@ -118,8 +118,21 @@ def handle_message(client, message):
         # Increment experience and level
         level_up(user_id, message.text) 
 
-# Daily reward amount
-DAILY_REWARD = 100
+@app.on_message(filters.command("help"))
+def help_handler(client, message):
+    # List of available commands and their descriptions
+    help_text = (
+        "Here are the commands you can use with the Pyxn Bot:\n\n"
+        "/start - Start the bot and set up your profile.\n"
+        "/profile - View your profile or the profile of another user (by replying to their message or tagging them).\n"
+        "/help - Show this help message.\n\n"
+        "💬 **Message Tracking**: Send messages in the group to earn experience and level up.\n"
+        "⚡ **Flood Control**: Don't spam! The bot will block you if you send too many messages too quickly.\n"
+        "🏆 **Leaderboard**: Soon to come! Compete with others based on your activity and points.\n"
+    )
+    
+    # Send the help message to the user
+    message.reply_text(help_text)
 
 @app.on_message(filters.command("daily"))
 def daily_reward(client, message):
@@ -149,6 +162,9 @@ def daily_reward(client, message):
             message.reply(f"You've already claimed your reward. Please wait {int(remaining_hours)} hours and {int(remaining_minutes)} minutes to claim again.")
             return
 
+    # Daily reward amount
+    DAILY_REWARD = 100
+  
     # Give the user their daily reward
     new_points = points + DAILY_REWARD
 
