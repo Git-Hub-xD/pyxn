@@ -132,6 +132,7 @@ def help_handler(client, message):
         "`/admin` - Admin-only commands (restricted access).\n"
         "\n*More commands will be added soon!*"
     )
+  )
 
 if __name__ == "__main__":
     app.run()
