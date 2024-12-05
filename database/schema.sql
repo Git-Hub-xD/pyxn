@@ -6,5 +6,6 @@ CREATE TABLE IF NOT EXISTS users (
     level INTEGER DEFAULT 1,           -- User level
     exp INTEGER DEFAULT 0,             -- Experience points
     health INTEGER DEFAULT 100,        -- Health points
-    joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Timestamp when the user joined
+    joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp when the user joined
+    last_claimed INTEGER DEFAULT 0 -- Ensure last_claimed exists
 );
